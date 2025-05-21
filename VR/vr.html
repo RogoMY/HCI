@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Wild Rift VR Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- A‑Frame core -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+    <!-- Tiny helper: fade‑in / fade‑out -->
+    <script>
+      AFRAME.registerComponent('fade', {
+        schema:{duration:{type:'number',default:300}},
+        init(){this.el.addEventListener('fade-out',()=>this.fade(0));this.el.addEventListener('fade-in',()=>this.fade(1));},
+        fade(to){const mat=this.el.getObject3D('mesh').material;const from=mat.opacity;const delta=to-from;const dur=this.data.duration;let t=0;const step=(e)=>{t+=e.detail.delta;if(t>=dur){mat.opacity=to;this.el.sceneEl.removeEventListener('tick',step);return;}mat.opacity=from+delta*(t/dur);};this.el.sceneEl.addEventListener('tick',step);}  
+      });
+
+      /* selectable: aduce panoul în fața utilizatorului și estompează restul */
+      AFRAME.registerComponent('selectable',{
+        schema:{focusPos:{type:'vec3',default:{x:0,y:1.6,z:-1.8}}},
+        init(){this.originalPosition=this.el.object3D.position.clone();this.originalRotation=this.el.object3D.rotation.clone();this.el.addEventListener('click',this.onClick.bind(this));},
+        onClick(){document.querySelectorAll('.panel').forEach(p=>{if(p!==this.el){p.emit('fade-out');}});this.el.emit('fade-in');this.el.object3D.position.set(this.data.focusPos.x,this.data.focusPos.y,this.data.focusPos.z);this.el.object3D.rotation.set(0,0,0);}  
+      });
+    </script>
+
+    <style>body{margin:0;background:#000;font-family:sans-serif}</style>
+  </head>
+  <body>
+    <a-scene shadow="false">
+      <!-- Fundal panoramic 360° (înlocuiește vr-bg.jpg cu orice imagine equirectangulară) -->
+      <a-sky src="#bg" rotation="0 -90 0"></a-sky>
+
+      <!-- Assets -->
+      <a-assets>
+        <!-- 360° pano → 2:1 aspect equirectangular, min 4096×2048 recomandat -->
+        <img id="bg" src="vr-bg.jpg">
+
+        <img id="home"         src="iPhone 14 Plus - 7.png">
+        <img id="performance"  src="iPhone 14 Plus - 11.png">
+        <img id="matchlist"    src="iPhone 14 Plus - 12.png">
+        <img id="matchdetail"  src="iPhone 14 Plus - 13.png">
+        <img id="profile"      src="iPhone 14 Plus - 14.png">
+        <img id="settings"     src="iPhone 14 Plus - 15.png">
+        <img id="patchlist"    src="iPhone 14 Plus - 8.png">
+        <img id="patchdetail"  src="iPhone 14 Plus - 9.png">
+        <img id="sociallist"   src="iPhone 14 Plus - 17.png">
+        <img id="socialthread" src="iPhone 14 Plus - 20.png">
+      </a-assets>
+
+      <!-- Camera + cursor -->
+      <a-entity id="rig">
+        <a-entity camera look-controls wasd-controls position="0 1.6 0">
+          <a-entity cursor="rayOrigin:mouse" position="0 0 -1"
+                    geometry="primitive:ring;radiusInner:0.015;radiusOuter:0.025"
+                    material="shader:flat;color:#00ff99"></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!-- Panouri principale vizibile din start -->
+      <a-entity id="panel-container">
+        <!-- width 1.8  →  height ≈ 3.888 -->
+        <a-plane class="panel" src="#home"        selectable fade width="1.8" height="3.888" position="-2.7 1.6 -2" rotation="0 18 0" material="transparent:true;opacity:1"></a-plane>
+        <a-plane class="panel" src="#performance" selectable fade width="1.8" height="3.888" position="-1.35 1.6 -2" rotation="0 9 0"  material="transparent:true;opacity:1"></a-plane>
+        <a-plane class="panel" src="#matchlist"   selectable fade width="1.8" height="3.888" position="0 1.6 -2"    rotation="0 0 0"  material="transparent:true;opacity:1"></a-plane>
+        <a-plane class="panel" src="#matchdetail" selectable fade width="1.8" height="3.888" position="1.35 1.6 -2"  rotation="0 -9 0" material="transparent:true;opacity:1"></a-plane>
+        <a-plane class="panel" src="#profile"     selectable fade width="1.8" height="3.888" position="2.7 1.6 -2"  rotation="0 -18 0" material="transparent:true;opacity:1"></a-plane>
+
+        <!-- planurile suplimentare invizibile până la click -->
+        <a-plane class="panel" src="#settings"     selectable fade visible="false" width="1.8" height="3.888" material="transparent:true;opacity:0"></a-plane>
+        <a-plane class="panel" src="#patchlist"    selectable fade visible="false" width="1.8" height="3.888" material="transparent:true;opacity:0"></a-plane>
+        <a-plane class="panel" src="#patchdetail"  selectable fade visible="false" width="1.8" height="3.888" material="transparent:true;opacity:0"></a-plane>
+        <a-plane class="panel" src="#sociallist"   selectable fade visible="false" width="1.8" height="3.888" material="transparent:true;opacity:0"></a-plane>
+        <a-plane class="panel" src="#socialthread" selectable fade visible="false" width="1.8" height="3.888" material="transparent:true;opacity:0"></a-plane>
+      </a-entity>
+
+      <!-- iluminare discretă -->
+      <a-entity light="type:ambient;intensity:1"></a-entity>
+    </a-scene>
+  </body>
+</html>
