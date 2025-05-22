@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raport Scholarly HTML ReFi</title>
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <script src="https://w3c.github.io/scholarly-html/js/scholarly.min.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Gamar: Platforma pentru a urmari progresul la jocuri comeptitive pe telefon - Raport Scholary HTML</h1>
+    </header>
+
+    <div role="contentinfo">
+        <dl>
+            <dt>Autor</dt>
+            <dd>
+                <a href="https://github.com/RogoMY" target="_blank">Mihai Rogojină</a>
+            </dd>
+        </dl>
+    </div>
+
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+        <h2>Abstract</h2>
+        <p>
+			Aceasta interfata este un model de baza pentru o aplicatie cu ajutorul careia poti sa iti urmaresti evolutia la joc si sa afli mai multe detalii despre coechipierii tai in timp real.
+        </p>
+    </section>
+
+    <section id="introduction" role="doc-introduction">
+        <h2>Introducere</h2>
+        <h3>Scop</h3>
+        <p>
+          Gamar doreste sa nu fie necesara accesarea unor siteuri de pe internet, pastrand optiunea de a afla progresul direct de la tine pe device.
+        </p>
+        <h3>Audiență țintă</h3>
+        <p>In special tineri pasionati de jocuri pe telefon, dar este un mod in care orice persoana, indiferent de varsta poate mentine legatura cu diferite comunitati.</p>
+    </section>
+		<h3>Viziune</h3>
+		<p> Gamar este un produs autonom pentru a facilita imbunatatirea unui utilizator la jocul dorit, oferind diferite locuri unde ar trebui sa se antreneze.</p>
+		<p> In calitate de componenta a unui sistem, Gamar va putea interactiona cu jocurile populare de pe telefon, inegrand diferice cereri a le comunitatii.</p>
+
+    <section id="description" role="doc-introduction">
+        <h2>Descriere generală</h2>
+        <h3>Funcționalități</h3>
+        <ul>
+            <li>Vizualizare in timp real a coechipierilor</li>
+            <li>Comparare performanta cu jucatori de rank mai mare</li>
+            <li>Partea sociala care mentine legatura in comunitate</li>
+            <li>Vederea istoricului si a performantei</li>
+            <li>Acces la noutati in joc</li>
+			<li>Vizualizarea patch-notes</li>
+        </ul>
+    </section>
+
+    <section id="interfaces">
+        <h2>Interfață grafică</h2>
+<section>
+  <h2>1. Structura vizuala si layout</h2>
+  <p>
+    Aplicatia adopta un fond intunecat care permite accentuarea elementelor
+    interactive. Ecranele folosesc o ierarhie tip „card-in-card”: blocurile de
+    continut sunt asezate pe panouri cu colturi rotunjite, iar aceste panouri
+    stau pe fundalul global, conferind profunzime si claritate.
+  </p>
+
+  <h2>2. Navigare de nivel superior</h2>
+  <p>
+    Bara de navigare persistenta este plasata jos si afiseaza trei icoane
+    principale: <strong>Profile</strong>, <strong>Home</strong> si
+    <strong>Settings</strong>. Tab-ul activ se distinge prin evidentierea
+    icoanei si a unei linii subtiri deasupra.
+  </p>
+
+  <h2>3. Tab Home (Dashboard)</h2>
+  <ul>
+    <li><strong>Selector joc</strong> – link text „Change &rsaquo;” in antet
+        permite schimbarea titlului urmarit.</li>
+    <li><strong>Widget performanta</strong> – afiseaza trei indicatori cheie:
+        Win Rate, K ⁄ D ⁄ A si numarul de meciuri.</li>
+    <li><strong>Patch Notes</strong> – card pliabil cu versiune, data si un
+        rezumat scurt al schimbarilor.</li>
+    <li><strong>News Feed</strong> – carduri verticale cu imagine, titlu si
+        marcaj temporal relativ.</li>
+  </ul>
+
+  <h2>4. Flux detaliu performanta</h2>
+  <ol>
+    <li><strong>Rezumat rank</strong> – emblema de rank in stanga, statistici
+        in dreapta, iar sub panou rata de castig.</li>
+    <li><strong>Lista meciuri</strong> – randuri gradiente: albastru pentru
+        victorii, rosu pentru infrangeri. Fiecare rand prezinta iconul
+        campionului, data, KDA si etichetele jucatorilor.</li>
+    <li><strong>Detaliu meci</strong> – dupa expandare se afiseaza un grafic
+        de damage, CS, etichete contextuale si bare de status.</li>
+  </ol>
+
+  <h2>5. Ecran Profile</h2>
+  <p>
+    Dominat de un avatar circular supradimensionat si username centrat.
+    Sub-sectiuni: camp text liber <em>Descriere</em>, shortcut <em>Social</em>
+    si buton dedicat „PAIR VR HEADSET”.
+  </p>
+
+  <h2>6. Ecran Settings</h2>
+  <p>
+    Optiunile sunt grupate logic: <strong>Account</strong>,
+    <strong>Game</strong> si <strong>Others</strong>. Fiecare optiune apare pe
+    un rand propriu, cu icoana la stanga si chevron la dreapta. Comutatoarele
+    folosesc un slider tip pilula pentru activare/dezactivare.
+  </p>
+
+  <h2>7. Feed Social</h2>
+  <p>
+    Cardurile de discutie preiau acelasi stil de panou: fundal intunecat,
+    colturi rotunjite, umbra discreta. Sageti de vot, numar comentarii si
+    titlul postarii sunt aliniate la marginea dreapta pentru economie de spatiu.
+  </p>
+
+  <h2>8. Tipografie si ierarhie</h2>
+  <p>
+    Textul foloseste un font sans-serif geometric: greutate medie pentru
+    titluri si normala pentru textul de corp. Ierarhia vizuala este sustinuta
+    de marimi de font diferite si de spatiere consistenta intre sectiuni.
+  </p>
+</section>
+
+    </section>
+<section id="Ai Usage">
+<h2>Utilizarea AI</h2>
+AI-ul a fost folosit in generat pentru inspiratie la structurare. Dupa ce imi propunea o structura, cand imi placea cum arata, eu o implementam manual in Figma.
+Dupa realizarea unuui meniu, era usor sa structureze iar sa zicem "Profile" sa semene cu main menu.
+Prompturi folosite:
+"
+</section>
+    <section id="references">
+        <h2>References</h2>
+        <ul>
+            <li><a href="https://www.w3.org/">Standardele W3C</a></li>
+            <li><a href="https://developer.mozilla.org/">MDN Web Docs</a></li>
+            <li><a href="https://github.com/terkelg/awesome-creative-coding">Awesome Creative Coding</a></li>
+        </ul>
+    </section>
+
+</body>
+</html>
